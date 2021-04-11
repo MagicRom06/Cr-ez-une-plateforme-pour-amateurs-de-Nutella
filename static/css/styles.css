@@ -555,26 +555,6 @@ pre code {
   margin-left: auto;
 }
 
-@media (min-width: 576px) {
-  .container-sm, .container {
-    max-width: 540px;
-  }
-}
-@media (min-width: 768px) {
-  .container-md, .container-sm, .container {
-    max-width: 720px;
-  }
-}
-@media (min-width: 992px) {
-  .container-lg, .container-md, .container-sm, .container {
-    max-width: 960px;
-  }
-}
-@media (min-width: 1200px) {
-  .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1140px;
-  }
-}
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -809,13 +789,6 @@ pre code {
 .offset-11 {
   margin-left: 91.6666666667%;
 }
-
-@media (min-width: 576px) {
-  .col-sm {
-    flex-basis: 0;
-    flex-grow: 1;
-    max-width: 100%;
-  }
 
   .row-cols-sm-1 > * {
     flex: 0 0 100%;
@@ -10107,6 +10080,36 @@ header.masthead h1 {
   }
 }
 
+header.masthead-account {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 4.5rem);
+  background: linear-gradient(to bottom, rgba(222, 148, 64, 0.5) 0%, rgba(222, 148, 64, 0.3) 100%), url("../images/bg-account.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+header.masthead-account h1 {
+  font-size: 2.25rem;
+}
+@media (min-width: 992px) {
+  header.masthead-account {
+    padding-top: 4.5rem;
+    padding-bottom: 0;
+  }
+  header.masthead-account p {
+    font-size: 1.15rem;
+  }
+  header.masthead-account h1 {
+    font-size: 3rem;
+  }
+}
+@media (min-width: 1200px) {
+  header.masthead-account h1 {
+    font-size: 3.5rem;
+  }
+}
+
 #portfolio .container-fluid, #portfolio .container-sm, #portfolio .container-md, #portfolio .container-lg, #portfolio .container-xl {
   max-width: 1920px;
 }
@@ -10172,4 +10175,20 @@ header.masthead h1 {
 
 .contact-email {
   color:black;
+}
+
+.auth-div {
+  border:1 px solid black;
+  background-color: #E8A75D;
+  margin-top:80px;
+  opacity: 0.9;
+  box-shadow: 5px 5px 5px black;
+}
+.carrot_icon {
+  background-color: #C45525;
+  border: 1px solid #C45525;
+}
+
+.social-item {
+  font-size:20px;
 }
