@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Search{% endblock title %}
+
+{% block content %}
+<header class="masthead-search">
+	<div class="container">
+		<div class="row h-100 justify-content-center text-center">
+			<div class="col-lg-10 align-self-end">
+				<h1 class="text-uppercase text-white font-weight-bold">Results</h1>
+				<hr class="divider my-4" />
+			</div>
+			<div class="col-lg-8 align-self-baseline">
+				<h1 class="text-white-75 font-weight-light mb-5"></h1>
+			</div>
+		</div>
+	</div>
+</header>
+<div class="container mt-3">
+	<div class="row row-item">
+		{% for elt in product_list %}
+		<div class="col-lg-3 d-flex align-items-stretch">
+			<div class="card rounded mt-4">
+				<div class="card-image text-center">
+					<span class="card-notify-nutriscore">{{elt.nutriscore}}</span>
+					<a href="{% url 'product_detail' elt.pk %}"><img class="img-fluid" src="{{ elt.image }}" alt="Alternate Text" height="50" width="250" /></a>
+				</div>
+				<div class="card-body">
+				</div>
+				<div class="card-footer text-muted text-center">
+					{{ elt.name|truncatewords:2 }}
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock content %}

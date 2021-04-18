@@ -6,3 +6,6 @@ class SimpleTests(SimpleTestCase):
 	def test_home_page_status_code(self):
 		response = self.client.get("/")
 		self.assertEqual(response.status_code, 200)
+
+	def test_search_result_status_code(self):
+		self.assertEqual(response.status_code, 200)
