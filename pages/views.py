@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Product, Category
 from django.db.models import Q
@@ -51,3 +51,7 @@ class SubstituteDetailView(DetailView):
     model = Product
     context_object_name = 'substitute'
     template_name = 'substitute_detail.html'
+
+
+class SubstituteCreateView(CreateView):
+    pass

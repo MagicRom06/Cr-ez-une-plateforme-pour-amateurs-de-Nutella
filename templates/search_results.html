@@ -17,19 +17,12 @@
 	</div>
 </header>
 <div class="container mt-3">
-	<div class="row row-item">
+	<div class="row">
 		{% for elt in product_list %}
-		<div class="col-lg-3 d-flex align-items-stretch">
-			<div class="card rounded mt-4">
-				<div class="card-image text-center">
-					<span class="card-notify-nutriscore">{{elt.nutriscore}}</span>
-					<a href="{% url 'product_detail' elt.pk %}"><img class="img-fluid" src="{{ elt.image }}" alt="Alternate Text" height="50" width="250" /></a>
-				</div>
-				<div class="card-body">
-				</div>
-				<div class="card-footer text-muted text-center">
-					{{ elt.name|truncatewords:2 }}
-				</div>
+		<div class="col-lg-3">
+			<div class="text-center">
+				<a href="{% url 'product_detail' elt.pk %}"><div class="product-card mb-3" style="background-image: url('{{ elt.image }}')"></div></a>
+				<h4>{{ elt.name }}</h4>
 			</div>
 		</div>
 		{% endfor %}

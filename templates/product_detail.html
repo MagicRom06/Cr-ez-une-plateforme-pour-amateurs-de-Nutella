@@ -8,26 +8,19 @@
 	<div class="container h-100">
 		<div class="row h-100 align-items-center justify-content-center text-center">
 			<div class="col-lg-10 align-self-end">
-				<h1 class="item-name text-uppercase">{{ product.name }}</h1>
+				<h1 class="item-name">{{ product.name }}</h1>
 			</div>
 		</div>
 	</div>
 </header>
 <div class="container mt-3">
-	<p class="text-center">Vous pouvez remplacer cet aliment par: </p>
 	<div class="row row-item">
 		{% for elt in substitutes %}
-		<div class="col-lg-3 d-flex align-items-stretch">
-			<div class="card rounded mt-4">
-				<div class="card-image text-center">
-					<span class="card-notify-nutriscore">{{elt.nutriscore}}</span>
-					<a href="{% url 'substitute_detail' elt.pk %}"><img class="img-fluid" src="{{ elt.image }}" alt="Alternate Text" height="50" width="250" /></a>
-				</div>
-				<div class="card-body">
-				</div>
-				<div class="card-footer text-muted text-center">
-					{{ elt.name|truncatewords:2 }}
-				</div>
+		<div class="col-lg-3">
+			<div>
+				<a href="{% url 'substitute_detail' elt.pk %}"><div class="product-card mb-3" style="background-image: url('{{ elt.image }}')"></div></a>
+				<h4>{{ elt.name }}</h4>
+				<a href="#"><span><i class="fas fa-save"></i> Sauvegarder</span></a>
 			</div>
 		</div>
 		{% endfor %}
