@@ -1,10 +1,9 @@
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Product, Category
+from .models import Product
 from django.db.models import Q
 
 # Create your views here.
+
 
 class SearchResultsListView(ListView):
     model = Product
@@ -27,14 +26,16 @@ class ProductDetailView(DetailView):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
         categories = self.object.categories.all()
         try:
-            context['substitutes'] = Product.objects.order_by('nutriscore').filter(
-                Q(categories__name__icontains=categories[0].name) & 
+            context['substitutes'] = Product.objects.order_by(
+                'nutriscore').filter(
+                Q(categories__name__icontains=categories[0].name) &
                 Q(categories__name__icontains=categories[1].name) &
                 (Q(nutriscore='a') | Q(nutriscore='b')))
             return context
         except IndexError:
-            context['substitutes'] = Product.objects.order_by('nutriscore').filter(
-                Q(categories__name__icontains=categories[0].name) & 
+            context['substitutes'] = Product.objects.order_by(
+                'nutriscore').filter(
+                Q(categories__name__icontains=categories[0].name) &
                 (Q(nutriscore='a') | Q(nutriscore='b')))
             return context
 

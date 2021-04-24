@@ -1,15 +1,16 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
-from django.urls import reverse, resolve
+from django.urls import reverse
 
 # Create your tests here.
+
 
 class CustomUserTests(TestCase):
 
     def setUp(self):
         self.user = get_user_model().objects.create_user(
             username='test_user',
-            email = 'test@test.com',
+            email='test@test.com',
             password='testpass123',
             first_name='test first_name',
             last_name='test last_name'
@@ -69,5 +70,7 @@ class SignupTests(TestCase):
             self.email
         )
         self.assertEqual(get_user_model().objects.all().count(), 1)
-        self.assertEqual(get_user_model().objects.all()[0].username, self.username)
-        self.assertEqual(get_user_model().objects.all()[0].email, self.email)
+        self.assertEqual(
+            get_user_model().objects.all()[0].username, new_user.username)
+        self.assertEqual(
+            get_user_model().objects.all()[0].email, new_user.email)

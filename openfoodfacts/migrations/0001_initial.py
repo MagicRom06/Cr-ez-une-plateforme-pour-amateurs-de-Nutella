@@ -15,21 +15,30 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
             ],
         ),
         migrations.CreateModel(
             name='Product',
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('id', models.UUIDField(
+                    default=uuid.uuid4,
+                    editable=False,
+                    primary_key=True,
+                    serialize=False)),
                 ('name', models.CharField(max_length=200)),
                 ('brands', models.CharField(max_length=200)),
                 ('nutriscore', models.CharField(max_length=10)),
                 ('image', models.CharField(max_length=255)),
                 ('kcal_100g', models.IntegerField()),
                 ('off_id', models.CharField(max_length=255, null=True)),
-                ('categories', models.ManyToManyField(to='openfoodfacts.Category')),
+                ('categories', models.ManyToManyField(
+                    to='openfoodfacts.Category')),
             ],
         ),
     ]
