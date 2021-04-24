@@ -13,11 +13,12 @@
 		</div>
 	</div>
 </header>
-<div class="container mt-3">
+<div class="container mt-5">
 	<div class="row row-item">
 		{% for elt in substitutes %}
 		<div class="col-lg-3">
-			<div>
+			<div class="text-center mt-3">
+				<div class="nutriscore-item nutriscore-type-{{ elt.nutriscore }}">{{ elt.nutriscore|upper }}</div>
 				<a href="{% url 'substitute_detail' elt.pk %}"><div class="product-card mb-3" style="background-image: url('{{ elt.image }}')"></div></a>
 				<h4>{{ elt.name }}</h4>
 				<a href="#"><span><i class="fas fa-save"></i> Sauvegarder</span></a>

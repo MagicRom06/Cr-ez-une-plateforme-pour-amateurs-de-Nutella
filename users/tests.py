@@ -6,6 +6,23 @@ from django.urls import reverse, resolve
 
 class CustomUserTests(TestCase):
 
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(
+            username='test_user',
+            email = 'test@test.com',
+            password='testpass123',
+            first_name='test first_name',
+            last_name='test last_name'
+        )
+
+    def test_account_page_view(self):
+        self.client.login(username='test_user', password='testpass123')
+        response = self.client.get(reverse('account'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.user.first_name)
+        self.assertContains(response, self.user.email)
+        self.assertTemplateUsed(response, 'users/account.html')
+
     def test_create_user(self):
         User = get_user_model()
         user = User.objects.create_user(

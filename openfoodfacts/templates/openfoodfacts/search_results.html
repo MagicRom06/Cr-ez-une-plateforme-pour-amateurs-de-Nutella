@@ -16,13 +16,14 @@
 		</div>
 	</div>
 </header>
-<div class="container mt-3">
-	<div class="row">
+<div class="container mt-5">
+	<div class="row row-item">
 		{% for elt in product_list %}
-		<div class="col-lg-3">
-			<div class="text-center">
-				<a href="{% url 'product_detail' elt.pk %}"><div class="product-card mb-3" style="background-image: url('{{ elt.image }}')"></div></a>
-				<h4>{{ elt.name }}</h4>
+		<div class="col-lg-3 col-md-auto col-sm-6 col-xs-auto">
+			<div class="text-center mt-3">
+				<div class="nutriscore-item nutriscore-type-{{ elt.nutriscore }}">{{ elt.nutriscore|upper }}</div>
+				<a href="{% url 'product_detail' elt.pk %}"><div class="card product-card mb-3 " style="background-image: url('{{ elt.image }}')"></div></a>
+				<h4>{{ elt.name|truncatewords:2 }}</h4>
 			</div>
 		</div>
 		{% endfor %}

@@ -1,23 +1,15 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Product, Category
 from django.db.models import Q
 
 # Create your views here.
 
-class HomePageView(TemplateView):
-    template_name = 'home.html'
-
-
-class AccountPageView(LoginRequiredMixin, TemplateView):
-    template_name = 'account.html'
-
-
 class SearchResultsListView(ListView):
     model = Product
     context_object_name = 'product_list'
-    template_name = 'search_results.html'
+    template_name = 'openfoodfacts/search_results.html'
 
     def get_queryset(self):
         search = self.request.GET.get('search')
@@ -29,7 +21,7 @@ class SearchResultsListView(ListView):
 class ProductDetailView(DetailView):
     model = Product
     context_object_name = 'product'
-    template_name = 'product_detail.html'
+    template_name = 'openfoodfacts/product_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
@@ -50,7 +42,7 @@ class ProductDetailView(DetailView):
 class SubstituteDetailView(DetailView):
     model = Product
     context_object_name = 'substitute'
-    template_name = 'substitute_detail.html'
+    template_name = 'openfoodfacts/substitute_detail.html'
 
 
 class SubstituteCreateView(CreateView):
