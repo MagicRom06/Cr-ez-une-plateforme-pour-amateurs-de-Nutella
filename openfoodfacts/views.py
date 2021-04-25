@@ -1,6 +1,11 @@
-from django.views.generic import ListView, DetailView, CreateView
-from .models import Product
+from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from django.shortcuts import redirect
+from django.views.generic import DetailView, ListView
+
+from .models import Product
 
 # Create your views here.
 
@@ -46,5 +51,36 @@ class SubstituteDetailView(DetailView):
     template_name = 'openfoodfacts/substitute_detail.html'
 
 
-class SubstituteCreateView(CreateView):
-    pass
+"""
+class SubstituteUpdateView(UpdateView):
+    model = CustomUser
+    fields = ('substitute', )
+    success_url = reverse_lazy('home')
+
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get(self.pk_url_kwarg)
+        print(pk)
+"""
+
+
+class UserSubstitutesListView(LoginRequiredMixin, ListView):
+    model = get_user_model()
+    context_object_name = 'user_substitutes_list'
+    template_name = 'openfoodfacts/user_substitutes.html'
+
+    def get_queryset(self):
+        products = Product.objects.filter(
+            Q(
+                id__in=get_user_model().objects.filter(
+                    id=self.request.user.id).values('substitute'))
+        )
+        return products
+
+
+@login_required(login_url='account_login')
+def saveSubstitute(request, product_id):
+    user = request.user
+    product = Product.objects.get(pk=product_id)
+    user.substitute.add(product)
+    user.save()
+    return redirect('home')

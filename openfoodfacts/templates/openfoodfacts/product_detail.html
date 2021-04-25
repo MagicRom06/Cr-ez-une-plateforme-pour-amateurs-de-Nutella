@@ -21,7 +21,7 @@
 				<div class="nutriscore-item nutriscore-type-{{ elt.nutriscore }}">{{ elt.nutriscore|upper }}</div>
 				<a href="{% url 'substitute_detail' elt.pk %}"><div class="product-card mb-3" style="background-image: url('{{ elt.image }}')"></div></a>
 				<h4>{{ elt.name }}</h4>
-				<a href="#"><span><i class="fas fa-save"></i> Sauvegarder</span></a>
+				<a href="{% url 'save_substitute' elt.pk %}"><span><i class="fas fa-save"></i> Sauvegarder</span></a>
 			</div>
 		</div>
 		{% endfor %}
