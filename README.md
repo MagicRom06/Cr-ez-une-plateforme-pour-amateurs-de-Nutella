@@ -17,7 +17,7 @@ Cette application utilise python 3.8 et Django 3.2
 - Affichage du détail d'un substitut<br>
 - Création d'un compte personnel
 - Authentification (email, google)
-- Enregistrement d'un substitut (En cours...)
+- Enregistrement d'un substitut
 
 ## Démarage du site en local
 git clone https://github.com/MagicRom06/Cr-ez-une-plateforme-pour-amateurs-de-Nutella.git<br>
@@ -26,4 +26,4 @@ exécuter la commande "pipenv install"<br>
 Une fois dans le répertoire principal, exécuter "python manage.py runserver".
 
 ## Adresse du site en ligne
-Pas encore déployé...
+https://pur-beurre-rh.herokuapp.com/
