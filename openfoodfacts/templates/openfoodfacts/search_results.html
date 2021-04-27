@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="row h-100 justify-content-center text-center">
 			<div class="col-lg-10 align-self-end">
-				<h1 class="text-uppercase text-white font-weight-bold">Results</h1>
+				<h1 class="text-uppercase text-white font-weight-bold">Resultats</h1>
 				<hr class="divider my-4" />
 			</div>
 			<div class="col-lg-8 align-self-baseline">
@@ -17,16 +17,23 @@
 	</div>
 </header>
 <div class="container mt-5">
-	<div class="row row-item">
+	<div class="row row-item justify-content-left">
+		{% if  product_list|length > 0%}
 		{% for elt in product_list %}
-		<div class="col-lg-3 col-md-auto col-sm-6 col-xs-auto">
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 			<div class="text-center mt-3">
-				<div class="nutriscore-item nutriscore-type-{{ elt.nutriscore }}">{{ elt.nutriscore|upper }}</div>
-				<a href="{% url 'product_detail' elt.pk %}"><div class="card product-card mb-3 " style="background-image: url('{{ elt.image }}')"></div></a>
+				<div class="nutriscore-item nutriscore-type-{{ elt.nutriscore }} d-none d-lg-block">{{ elt.nutriscore|upper }}</div>
+				<div class="container-product">
+					<a href="{% url 'product_detail' elt.pk %}"><div class="card product-card mb-3 " style="background-image: url('{{ elt.image }}')"></div>
+					</a>
+				</div>
 				<h4>{{ elt.name|truncatewords:2 }}</h4>
 			</div>
 		</div>
 		{% endfor %}
+		{% else %}
+		<h3 class="text-center">Aucun résultat</h3>
+		{% endif %}
 	</div>
 </div>
 {% endblock content %}

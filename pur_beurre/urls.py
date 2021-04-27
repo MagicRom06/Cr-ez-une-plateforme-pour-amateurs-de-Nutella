@@ -21,5 +21,6 @@ urlpatterns = [
     path('users/', include('allauth.urls')),
     path('users/', include('users.urls')),
     path('', include('home_page.urls')),
-    path('openfoodfacts/', include('openfoodfacts.urls'))
+    path('openfoodfacts/', include('openfoodfacts.urls')),
+    path('legal/', include('legal_notice.urls'))
 ]

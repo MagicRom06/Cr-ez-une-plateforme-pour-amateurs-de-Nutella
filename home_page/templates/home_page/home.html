@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-
 <header class="masthead">
 	<div class="container h-100">
 		<div class="row h-100 align-items-center justify-content-center text-center">
@@ -15,7 +16,7 @@
 				<h2 class="text-white-75 font-weight-light mb-5">Trouvez un produit de substitution pour ceux que vous consommez tous les jours</h2>
 				<form action="{% url 'search_results' %}">
 					<div class="input-group mb-3">
-						<input name="search" type="text" class="form-control form-control-lg" placeholder="search"aria-describedby="button-addon2">
+						<input name="search" type="text" class="form-control form-control-lg" placeholder="Produit"aria-describedby="button-addon2">
 						<button class="btn btn-secondary btn-lg" type="submit" id="button-addon2">Rechercher</button>
 					</div>
 				</form>
@@ -26,7 +27,7 @@
 <!-- About-->
 <section class="page-section" id="about">
 	<div class="container">
-		<div class="row justify-content-center">
+		<div class="row justify-content-center" id="row-about">
 			<div class="col-lg-8 text-center">
 				<h2 class="text-white mt-0">Colette et Remy</h2>
 				<hr class="separator-about">
@@ -44,20 +45,67 @@
 		</div>
 	</div>
 </section>
+<section class="page-section m-0 p-0" id="portfolio">
+	<div class="container-fluid">
+		<div class="row row-no-gutters mt-0">
+			<div class="col-lg-4 col-md-6 d-none d-lg-block p-0 m-0 portfolio-img">
+				<img src="{% static 'images/colette-9.jpg' %}"/>
+				<div class="overlay">
+					<div class="portfolio-txt">Colette co-fondatrice de Pur Beurre</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 d-none d-lg-block p-0 m-0 portfolio-img p-img-2">
+				<img src="{% static 'images/remy-10.jpg' %}"/>
+				<div class="overlay">
+					<div class="portfolio-txt p-txt-2">Remy co-fondateur de Pur Beurre</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 d-none d-lg-block p-0 m-0 portfolio-img">
+				<img src="{% static 'images/colette-6.jpg' %}"/>
+				<div class="overlay">
+					<div class="portfolio-txt p-txt-2">Colette pendant la finale de Top Chef</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 d-none d-lg-block p-0 m-0 portfolio-img">
+				<img src="{% static 'images/remy-2.jpg' %}"/>
+				<div class="overlay">
+					<div class="portfolio-txt p-txt-2">
+						<blockquote class="blockquote">
+							<p class="mb-0">"La cuisine est la servante de la médecine"</p>
+							<footer class="blockquote-footer mt-1"><cite title="Source Title">Remy</cite></footer>
+						</blockquote>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 d-none d-lg-block p-0 m-0 portfolio-img">
+				<img src="{% static 'images/ratatouille-11.jpg' %}"/>
+				<div class="overlay">
+					<div class="portfolio-txt p-txt-2">Première collaboration de Colette et Remy: le restaurant "La Ratatouille" à Paris</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 d-none d-lg-block p-0 m-0 portfolio-img">
+				<img src="{% static 'images/remy-4.jpg' %}"/>
+				<div class="overlay">
+					<div class="portfolio-txt p-txt-2">Couverture du magazine "healthy food life" avec Remy</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 <!-- Contact-->
 <section class="page-section" id="contact">
-	<div class="container">
+	<div class="container" id="row-contact">
 		<div class="row justify-content-center">
 			<div class="col-lg-8 text-center">
 				<h2 class="text-white mt-0">Contactez-nous !</h2>
 				<hr class="separator-contact">
-				<p class="text-white mb-4">Une question? n'hésitez pas à nous appeler ou nous envoyer un email !</p>
+				<p class="text-white mb-4">Une question ? N'hésitez pas à nous appeler ou nous envoyer un email !</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
 				<i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-				<div>+1 (555) 123-4567</div>
+				<div>01 25 45 67 12</div>
 			</div>
 			<div class="col-lg-4 mr-auto text-center">
 				<i class="fas fa-envelope fa-3x mb-3 text-muted"></i>

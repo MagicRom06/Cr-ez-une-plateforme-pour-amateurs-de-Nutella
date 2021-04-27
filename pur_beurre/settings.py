@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'home_page.apps.Home_pageConfig',
     'openfoodfacts.apps.OpenfoodfactsConfig',
+    'legal_notice.apps.Legal_noticeConfig',
 
     # third-party
     'crispy_forms',
