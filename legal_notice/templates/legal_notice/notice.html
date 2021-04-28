@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}Mentions Legales{% endblock title %}
 
 {% block content %}
@@ -27,20 +29,26 @@
 	</div>
 	<hr>
 	<div class="row text-center mt-3">
-		<h4>Icones </h4>
-		<p><a href="https://fontawesome.com/"><i class="fab fa-font-awesome legal-item-2 legal-item-3-1"></i></a></p>
+		<h4>Hébergé par </h4>
+		<p><a class="heroku-icon legal-item-2" href="https://www.heroku.com
+			"><span class="iconify" data-icon="simple-icons:heroku" data-inline="false"></span> Heroku</a>
+		</div>
+		<hr>
+		<div class="row text-center mt-3">
+			<h4>Icones </h4>
+			<p><a href="https://fontawesome.com/"><i class="fab fa-font-awesome legal-item-2 legal-item-3-1"></i></a></p>
+		</div>
+		<hr>
+		<div class="row text-center mt-3">
+			<h4>Template </h4>
+			<p><a href="https://startbootstrap.com/theme/creative">https://startbootstrap.com/theme/creative</a></p>
+		</div>
+		<hr>
+		<div class="row text-center mt-3">
+			<h4>Photos </h4>
+			<p><a href="https://unsplash.com/photos/eqsEZNCm4-c">Olenka Kotyk</a></p>
+			<p><a href="https://unsplash.com/photos/k60JspcBwKE">Kawin Harasai</a></p>
+			<p><a href="https://unsplash.com/photos/YTbFHT9_IhY">Greg Jeanneau</a></p>
+		</div>
 	</div>
-	<hr>
-	<div class="row text-center mt-3">
-		<h4>Template </h4>
-		<p><a href="https://startbootstrap.com/theme/creative">https://startbootstrap.com/theme/creative</a></p>
-	</div>
-	<hr>
-	<div class="row text-center mt-3">
-		<h4>Photos </h4>
-		<p><a href="https://unsplash.com/photos/eqsEZNCm4-c">Olenka Kotyk</a></p>
-		<p><a href="https://unsplash.com/photos/k60JspcBwKE">Kawin Harasai</a></p>
-		<p><a href="https://unsplash.com/photos/YTbFHT9_IhY">Greg Jeanneau</a></p>
-	</div>
-</div>
-{% endblock content %}
+	{% endblock content %}
