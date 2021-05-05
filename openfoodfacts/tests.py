@@ -1,8 +1,10 @@
+import uuid
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import Category, Product
+from .models import Category, Product, Substitute
 
 # Create your tests here.
 
@@ -49,22 +51,36 @@ class OpenFoodFactsTest(TestCase):
         self.assertTemplateUsed(
             response, 'openfoodfacts/product_detail.html')
 
+    def test_false_product_detail_view(self):
+        response = self.client.get(self.product.get_absolute_url() + 'test')
+        self.assertEqual(response.status_code, 404)
+
     def test_save_substitute_without_logged_user(self):
         response = self.client.get(
-            reverse('save_substitute', args=(
-                self.product.pk, )))
+            reverse('save_substitute'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(
             response, '{}'.format(
                 reverse('account_login') + '?next=' + reverse(
-                    'save_substitute', args=(self.product.pk, ))))
+                    'save_substitute')))
 
     def test_save_substitute_with_logged_user(self):
         self.client.login(username='test_user', password='testpass123')
         response = self.client.get(
-            reverse('save_substitute', args=(self.product.pk, )))
+            '/openfoodfacts/save/?product=' +
+            str(self.product.pk) + '&substitute=' +
+            str(self.product.pk))
         self.assertEqual(response.status_code, 302)
-        # self.assertEqual(
-        # get_user_model().objects.all()
-        # [0].substitute.name, self.product.name)
+        self.assertEqual(
+            Substitute.objects.all()[0].product.name, self.product.name)
         self.assertRedirects(response, reverse('home'))
+
+    def test_save_substitute_with_false_product(self):
+        false_product = str(uuid.UUID('cf0ce163-3fde-444e-af7f-d181471bc543'))
+        self.client.login(username='test_user', password='testpass123')
+        response = self.client.get(
+            '/openfoodfacts/save/?product=' +
+             false_product +
+            '&substitute=' +
+            str(self.product.pk))
+        self.assertEqual(response.status_code, 404)

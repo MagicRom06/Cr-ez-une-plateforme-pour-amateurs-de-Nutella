@@ -27,7 +27,7 @@ black 35%;">
 				<div class="container-product">
 				<a href="{% url 'substitute_detail' elt.pk %}"><div class="product-card mb-3" style="background-image: url('{{ elt.image }}')"></div></a></div>
 				<h4>{{ elt.name }}</h4>
-				<a href="{% url 'save_substitute' elt.pk %}"><span><i class="fas fa-save"></i> Sauvegarder</span></a>
+				<a href="{% url 'save_substitute' %}?product={{ product.id }}&substitute={{ elt.pk }}"><span><i class="fas fa-save"></i> Sauvegarder</span></a>
 			</div>
 		</div>
 		{% endfor %}

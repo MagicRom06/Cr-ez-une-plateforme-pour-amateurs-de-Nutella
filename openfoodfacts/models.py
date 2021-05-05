@@ -1,5 +1,6 @@
 import uuid
 
+from django.conf import settings
 from django.db import models
 from django.urls import reverse
 
@@ -28,3 +29,18 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product_detail', args=[str(self.id)])
+
+
+class Substitute(models.Model):
+    substitute = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name="substitute")
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name="product")
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="user")

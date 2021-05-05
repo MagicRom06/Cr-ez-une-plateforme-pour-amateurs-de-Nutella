@@ -20,7 +20,7 @@ urlpatterns = [
            name='substitute_detail'
     ),
     path(
-           'save/<product_id>',
+           'save/',
            saveSubstitute,
            name='save_substitute'
     ),
