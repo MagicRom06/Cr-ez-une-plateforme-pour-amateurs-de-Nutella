@@ -26,7 +26,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
-    DEBUG = False
+    DEBUG = True
     SITE_ID = 3
 else:
     DEBUG = True
