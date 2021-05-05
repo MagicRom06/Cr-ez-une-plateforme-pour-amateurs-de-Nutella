@@ -27,8 +27,10 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
+    SITE_ID = 3
 else:
     DEBUG = True
+    SITE_ID = 2
 
 ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -160,7 +162,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
-SITE_ID = 2
 
 AUTHENTIFICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',

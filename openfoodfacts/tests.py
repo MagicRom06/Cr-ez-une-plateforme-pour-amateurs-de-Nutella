@@ -80,7 +80,7 @@ class OpenFoodFactsTest(TestCase):
         self.client.login(username='test_user', password='testpass123')
         response = self.client.get(
             '/openfoodfacts/save/?product=' +
-             false_product +
+            false_product +
             '&substitute=' +
             str(self.product.pk))
         self.assertEqual(response.status_code, 404)
