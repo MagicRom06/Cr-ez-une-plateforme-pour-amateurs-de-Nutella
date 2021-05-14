@@ -12,6 +12,9 @@ from .models import Product, Substitute
 
 
 class SearchResultsListView(ListView):
+    """
+    View used for searching product
+    """
     model = Product
     context_object_name = 'product_list'
     template_name = 'openfoodfacts/search_results.html'
@@ -24,6 +27,9 @@ class SearchResultsListView(ListView):
 
 
 class ProductDetailView(DetailView):
+    """
+    View used to get detail product page
+    """
     model = Product
     context_object_name = 'product'
     template_name = 'openfoodfacts/product_detail.html'
@@ -47,12 +53,18 @@ class ProductDetailView(DetailView):
 
 
 class SubstituteDetailView(DetailView):
+    """
+    View used to get detail substitute page
+    """
     model = Product
     context_object_name = 'substitute'
     template_name = 'openfoodfacts/substitute_detail.html'
 
 
 class UserSubstitutesListView(LoginRequiredMixin, ListView):
+    """
+    View used to get substitute list saved by user
+    """
     model = Substitute
     context_object_name = 'user_substitutes_list'
     template_name = 'openfoodfacts/user_substitutes.html'
@@ -68,6 +80,9 @@ class UserSubstitutesListView(LoginRequiredMixin, ListView):
 
 @login_required(login_url='account_login')
 def saveSubstitute(request):
+    """
+    View used to save substitute
+    """
     try:
         user_id = request.user.id
         product_id = request.GET.get('product')

@@ -11,7 +11,7 @@ class Product:
         nutriscore,
         image,
         categories,
-        nutri_benchmark,
+        kcal_100g,
         off_id
     ):
         self._name = name
@@ -19,7 +19,7 @@ class Product:
         self._nutriscore = nutriscore
         self._image = image
         self._categories = categories
-        self._nutri_benchmark = nutri_benchmark
+        self._kcal_100g = kcal_100g
         self._off_id = off_id
 
     @staticmethod
@@ -82,8 +82,8 @@ class Product:
     def categories(self):
         return self._categories
 
-    def nutri_benchmark(self):
-        return self._nutri_benchmark
+    def kcal_100g(self):
+        return self._kcal_100g
 
     def off_id(self):
         return self._off_id

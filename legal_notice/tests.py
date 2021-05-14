@@ -5,7 +5,10 @@ from django.urls import reverse
 
 
 class LegalTemplateViewTest(TestCase):
-    def test_home_page_status_code(self):
+    """
+    testing legal notice page
+    """
+    def test_legal_page_status_code(self):
         response = self.client.get(reverse('legal'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Mentions légales")

@@ -24,12 +24,12 @@ class Database:
     def disconnect():
         Database.databaseConnection.close()
         databaseConnection = None
-        print(databaseConnection)
+        return databaseConnection
 
     @staticmethod
     def insert_category(name):
         cur = Database.cursor()
-        sql = """INSERT INTO pages_category (name) VALUES (%s);"""
+        sql = """INSERT INTO openfoodfacts_category (name) VALUES (%s);"""
         cur.execute(sql, (name, ))
         Database.databaseConnection.commit()
 
@@ -39,11 +39,11 @@ class Database:
         brands,
         nutriscore,
         image,
-        nutri_benchmark,
+        kcal_100g,
         off_id
     ):
         cur = Database.cursor()
-        sql = """INSERT INTO pages_product (
+        sql = """INSERT INTO openfoodfacts_product (
         id, name, brands, nutriscore, image, kcal_100g, off_id)
         VALUES (%s, %s, %s, %s, %s, %s, %s);"""
         val = (
@@ -52,7 +52,7 @@ class Database:
             brands,
             nutriscore,
             image,
-            nutri_benchmark,
+            kcal_100g,
             off_id,
         )
         cur.execute(sql, val)
@@ -61,7 +61,7 @@ class Database:
     @staticmethod
     def insert_products_categories(product_id, category_id):
         cur = Database.cursor()
-        sql = """INSERT INTO pages_product_categories (
+        sql = """INSERT INTO openfoodfacts_product_categories (
         product_id, category_id)
         VALUES (%s, %s);"""
         val = (product_id, category_id, )

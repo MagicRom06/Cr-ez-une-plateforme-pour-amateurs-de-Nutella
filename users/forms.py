@@ -3,6 +3,9 @@ from django.contrib.auth.forms import UserChangeForm, UserCreationForm, forms
 
 
 class CustomUserCreationForm(UserCreationForm):
+    """
+    Personalize user creation form
+    """
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
 
@@ -17,6 +20,9 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserChangeForm(UserChangeForm):
+    """
+    Personalize user creation form
+    """
 
     class Meta:
         model = get_user_model()

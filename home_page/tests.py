@@ -6,6 +6,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 class HomePageViewTest(TestCase):
+    """
+    testing home page
+    """
     def test_home_page_status_code(self):
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
@@ -14,6 +17,9 @@ class HomePageViewTest(TestCase):
 
 
 class SearchFormTest(LiveServerTestCase):
+    """
+    live testing search form from home page
+    """
     def test_search_form(self):
         selenium = webdriver.Chrome(ChromeDriverManager().install())
         selenium.get('http://127.0.0.1:8000/')

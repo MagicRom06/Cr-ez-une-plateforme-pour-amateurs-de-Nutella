@@ -10,6 +10,9 @@ from .models import Category, Product, Substitute
 
 
 class OpenFoodFactsTest(TestCase):
+    """
+    OpenfoodFact app tests
+    """
     def setUp(self):
         self.user = get_user_model().objects.create_user(
             username='test_user',
@@ -29,6 +32,9 @@ class OpenFoodFactsTest(TestCase):
             Category.objects.create(name="test category"))
 
     def test_product_listing(self):
+        """
+        Testing products listing information
+        """
         self.assertEqual(f'{self.product.name}', 'test name')
         self.assertEqual(f'{self.product.brands}', 'test brands')
         self.assertEqual(f'{self.product.nutriscore}', 'a')
@@ -36,6 +42,9 @@ class OpenFoodFactsTest(TestCase):
         self.assertEqual(f'{self.product.kcal_100g}', '100')
 
     def test_product_search_list_view(self):
+        """
+        testing searching product
+        """
         response = self.client.get(
             reverse('search_results'),
             {'search': self.product.name})
@@ -45,6 +54,9 @@ class OpenFoodFactsTest(TestCase):
             response, 'openfoodfacts/search_results.html')
 
     def test_product_detail_view(self):
+        """
+        testing detail product page information
+        """
         response = self.client.get(self.product.get_absolute_url())
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'test name')
@@ -52,10 +64,16 @@ class OpenFoodFactsTest(TestCase):
             response, 'openfoodfacts/product_detail.html')
 
     def test_false_product_detail_view(self):
+        """
+        testing detail product information with wrong product
+        """
         response = self.client.get(self.product.get_absolute_url() + 'test')
         self.assertEqual(response.status_code, 404)
 
     def test_save_substitute_without_logged_user(self):
+        """
+        testing saving substitute while not logged
+        """
         response = self.client.get(
             reverse('save_substitute'))
         self.assertEqual(response.status_code, 302)
@@ -65,6 +83,9 @@ class OpenFoodFactsTest(TestCase):
                     'save_substitute')))
 
     def test_save_substitute_with_logged_user(self):
+        """
+        testing saving substitute while logged
+        """
         self.client.login(username='test_user', password='testpass123')
         response = self.client.get(
             '/openfoodfacts/save/?product=' +
@@ -76,6 +97,9 @@ class OpenFoodFactsTest(TestCase):
         self.assertRedirects(response, reverse('home'))
 
     def test_save_substitute_with_false_product(self):
+        """
+        testing saving substitute with wrong substitute
+        """
         false_product = str(uuid.UUID('cf0ce163-3fde-444e-af7f-d181471bc543'))
         self.client.login(username='test_user', password='testpass123')
         response = self.client.get(

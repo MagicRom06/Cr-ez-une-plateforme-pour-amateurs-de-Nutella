@@ -17,6 +17,9 @@ class CustomUserTests(TestCase):
         )
 
     def test_account_page_view(self):
+        """
+        testing account page access
+        """
         self.client.login(username='test_user', password='testpass123')
         response = self.client.get(reverse('account'))
         self.assertEqual(response.status_code, 200)
@@ -25,6 +28,9 @@ class CustomUserTests(TestCase):
         self.assertTemplateUsed(response, 'users/account.html')
 
     def test_create_user(self):
+        """
+        testing creating new user
+        """
         User = get_user_model()
         user = User.objects.create_user(
             username='test',
@@ -38,6 +44,9 @@ class CustomUserTests(TestCase):
         self.assertFalse(user.is_superuser)
 
     def test_create_superuser(self):
+        """
+        testing creating new super user
+        """
         User = get_user_model()
         admin_user = User.objects.create_superuser(
             username='admin',
@@ -60,11 +69,17 @@ class SignupTests(TestCase):
         self.response = self.client.get(url)
 
     def test_signup_template(self):
+        """
+        testing signup template access
+        """
         self.assertEqual(self.response.status_code, 200)
         self.assertTemplateUsed(self.response, 'account/signup.html')
         self.assertContains(self.response, 'Sign up')
 
     def test_signup_form(self):
+        """
+        testing signup form
+        """
         new_user = get_user_model().objects.create_user(
             self.username,
             self.email
