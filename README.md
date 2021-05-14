@@ -22,8 +22,10 @@ Cette application utilise python 3.8 et Django 3.2
 ## Démarage du site en local
 git clone https://github.com/MagicRom06/Cr-ez-une-plateforme-pour-amateurs-de-Nutella.git<br>
 Pour activer l'environnement virtuel une fois dans le repertoire, executer la commande pipenv shell<br>
-exécuter la commande "pipenv install"<br>
-Une fois dans le répertoire principal, exécuter "python manage.py runserver".
+exécuter la commande "pipenv install" pour installer les dépendances<br>
+Pour ajouter les données nécessaires, executer "python manage.py load_data".
+Exécuter "python manage.py runserver" pour lancer l'application.
+Depuis le navigateur, aller sur l'URL http://127.0.0.1:8000/ accèder à l'application.
 
 ## Adresse du site en ligne
 https://pur-beurre-rh.herokuapp.com/
