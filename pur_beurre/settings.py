@@ -101,10 +101,7 @@ DATABASES = {
         'NAME': 'pur_beurre',
         'USER': 'django',
         'HOST': 'localhost',
-        'PORT': 5432,
-        'TEST': {
-            'NAME': 'mytestdatabase',
-        },
+        'PORT': 5432
     }
 }
 
