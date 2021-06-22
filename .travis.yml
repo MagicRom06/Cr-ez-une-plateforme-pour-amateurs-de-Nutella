@@ -9,7 +9,9 @@ services:
 install:
   - pipenv install
 before_script:
-  - psql -c 'create database pur_beurre;' -U django
+  - psql -c 'create database pur_beurre;'
+  - psql -c 'create user django;'
+  - psql -c 'GRANT permissions ON DATABASE pur_beurre TO django;'
 script:
   - python manage.py makemigrations
   - python manage.py migrate
