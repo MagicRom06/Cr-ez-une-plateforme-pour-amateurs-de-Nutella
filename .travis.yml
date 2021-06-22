@@ -3,6 +3,7 @@ language: python
 python:
   - "3.8"
 env:
+  - DJANGO_SETTINGS_MODULE="pur_beurre.settings"
   - SECRET_KEY='TEST'
 services:
   - postgresql
