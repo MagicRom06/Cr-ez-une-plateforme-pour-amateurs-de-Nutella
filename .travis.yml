@@ -12,6 +12,7 @@ before_script:
   - psql -c 'create database pur_beurre;'
   - psql -c 'create user django;'
   - psql -c 'GRANT all privileges ON DATABASE pur_beurre TO django;'
+  - psql -c 'GRANT all privileges ON DATABASE mytestdatabase TO django;'
 script:
   - export SECRET_KEY='test'
   - python manage.py makemigrations
