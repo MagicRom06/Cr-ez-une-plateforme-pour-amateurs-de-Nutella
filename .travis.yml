@@ -23,7 +23,7 @@ before_script:
   - psql -c 'GRANT all privileges ON DATABASE pur_beurre TO django;'
 script:
   - export SECRET_KEY='test'
-  - whereis google-chrome-stable
+  - whereis google-chrome
   - whereis chromedriver
   - python manage.py makemigrations
   - python manage.py migrate
