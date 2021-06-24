@@ -10,8 +10,10 @@ addons:
   chrome: stable
 install:
   - pipenv install
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-  - yum localinstall google-chrome-stable_current_x86_64.rpm
+  - wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip
+  - unzip ~/chromedriver_linux64.zip -d ~/
+  - rm ~/chromedriver_linux64.zip
+  - sudo mv -f ~/chromedriver /usr/local/bin/
 before_script:
   - psql -c 'create database pur_beurre;'
   - psql -c 'create user django;'
