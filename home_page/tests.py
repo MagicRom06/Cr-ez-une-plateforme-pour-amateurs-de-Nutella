@@ -5,6 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.firefox.webdriver import WebDriver
+from selenium.webdriver.chrome.options import Options
 
 
 class HomePageViewTest(TestCase):
@@ -25,15 +26,6 @@ class SearchFormTest(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.selenium = webdriver.Chrome(chrome_options=chromeOptions)
-        cls.selenium.implicitly_wait(10)
-
-    @classmethod
-    def tearDownClass(cls):
-        cls.selenium.quit()
-        super().tearDownClass()
-
-    def test_search_form(self):
         chromeOptions = webdriver.ChromeOptions() 
         chromeOptions.add_experimental_option(
             "prefs", 
@@ -48,6 +40,15 @@ class SearchFormTest(StaticLiveServerTestCase):
         chromeOptions.add_argument("start-maximized") 
         chromeOptions.add_argument("disable-infobars")
         chromeOptions.add_argument(r"user-data-dir=.\cookies\\test") 
+        cls.selenium = webdriver.Chrome(ChromeDriverManager().install(), options=chromeOptions)
+        cls.selenium.implicitly_wait(10)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.selenium.quit()
+        super().tearDownClass()
+
+    def test_search_form(self):
         self.selenium.get(self.live_server_url)
         search = self.selenium.find_element_by_id('search')
         submit = self.selenium.find_element_by_id('submit_button')
