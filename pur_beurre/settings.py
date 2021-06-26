@@ -100,6 +100,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pur_beurre',
         'USER': 'django',
+        'PASSWORD': os.environ['DB_PASSWORD'],
         'HOST': 'localhost',
         'PORT': 5432
     }
