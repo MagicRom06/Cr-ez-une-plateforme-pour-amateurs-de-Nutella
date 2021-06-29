@@ -19,6 +19,7 @@ coverage = "*"
 selenium = "*"
 webdriver-manager = "*"
 django-cors-headers = "*"
+raven = "*"
 
 [requires]
 python_version = "3.8"
