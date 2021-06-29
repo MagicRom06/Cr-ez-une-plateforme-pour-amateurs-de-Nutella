@@ -11,7 +11,7 @@ class Database:
     def connect():
         conn = psycopg2.connect(database="pur_beurre",
                                 user="django",
-                                password="thomas",
+                                password="Thomas040417!",
                                 host="127.0.0.1",
                                 port="5432")
         Database.databaseConnection = conn
