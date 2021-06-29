@@ -1,3 +1,0 @@
-[71796:775:0625/192418.046020:WARNING:CONSOLE(0)] "The page delivered both an 'X-Frame-Options' header and a 'Content-Security-Policy' header with a 'frame-ancestors' directive. Although the 'X-Frame-Options' header alone would have blocked embedding, it has been ignored.", source: chrome-untrusted://new-tab-page/custom_background_image?url= (0)
-[71796:775:0625/192418.895263:INFO:CONSOLE(1)] "Uncaught TypeError: Cannot read property 'addEventListener' of null", source: http://localhost:56702/static/js/scripts.js (1)
-[71796:775:0625/192419.197446:WARNING:pref_notifier_impl.cc(40)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
