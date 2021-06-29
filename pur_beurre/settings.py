@@ -14,7 +14,8 @@ import os
 from pathlib import Path
 
 import dj_database_url
-import raven
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -192,54 +193,20 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-RAVEN_CONFIG = {
-        'dsn': 'https://somethingverylong@sentry.io/216272',
-        'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
-}
+sentry_sdk.init(
+    dsn="https://1a87fd96ffea4b328bad4068cad0713a@o890818.ingest.sentry.io/5839774",
+    integrations=[DjangoIntegration()],
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'root': {
-        'level': 'INFO', # WARNING by default. Change this to capture more than warnings.
-        'handlers': ['sentry'],
-    },
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s '
-                      '%(process)d %(thread)d %(message)s'
-        },
-    },
-    'handlers': {
-        'sentry': {
-            'level': 'INFO', # To capture more than ERROR, change to WARNING, INFO, etc.
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-            'tags': {'custom-tag': 'x'},
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
-    },
-    'loggers': {
-        'django.db.backends': {
-            'level': 'ERROR',
-            'handlers': ['console'],
-            'propagate': False,
-        },
-        'raven': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-            'propagate': False,
-        },
-        'sentry.errors': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-            'propagate': False,
-        },
-    },
-}
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
+
 if DEBUG is not True:
     SECURE_BROWSER_FILTER = True
     X_FRAME_OPTIONS = 'DENY'
