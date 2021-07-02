@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b4932af31a0528c4d97b16591af23f10e62974cb594edf385a05bdffaa36a3e8"
+            "sha256": "17661194c2645c64a2016e09548b460a03d431a984ed9781360161b2e8b9a6c4"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -276,6 +276,20 @@
                 "sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"
             ],
             "version": "==0.6.1"
+        },
+        "newrelic": {
+            "hashes": [
+                "sha256:031da3850cd3b980573e84a91d76a0e72e3da331e20f31e744d49b1a644262b5",
+                "sha256:4582053dabeb369c4fedb6ba68fdb19b57a2d460a7df96e5b43a4440045376fc",
+                "sha256:4cdc205e39c7ba7227f4c7b7705bef2a4b1dcdf4b37a77595b9a536c0fca2a6a",
+                "sha256:904035d4ec3d24a32fda913923fa30356c7b15c15542e12f4e7d2d85a73f5ccd",
+                "sha256:95d9ee7caa97596c71a09afc522b4aeadef1038ffdf195ba309e7c9a69e0a3e0",
+                "sha256:99ad828de42eac17a301473fd5e1fe1cf1c2fe28c585fb21138a7cbd54d7f7f1",
+                "sha256:9c00c95f94796b99038b63956d0e7482f161d546ce183b7e717191577e68c837",
+                "sha256:c92a6b5f15ed901d002cc4f339546a509838e424843f6d67c0e3aac48c54efc2"
+            ],
+            "index": "pypi",
+            "version": "==6.4.3.160"
         },
         "oauthlib": {
             "hashes": [

@@ -21,6 +21,7 @@ webdriver-manager = "*"
 django-cors-headers = "*"
 raven = "*"
 sentry-sdk = "*"
+newrelic = "*"
 
 [requires]
 python_version = "3.8"
