@@ -73,3 +73,24 @@ class Database:
         cur = Database.cursor()
         cur.execute("select * from {};".format(table))
         return cur.fetchall()
+
+    def get_product_from_key(key):
+        cur = Database.cursor()
+        cur.execute(f"select * from openfoodfacts_product where id = '{key}'")
+        return cur.fetchall()
+
+    def delete(product_id):
+        cur = Database.cursor()
+        cur.execute(f"delete from openfoodfacts_product_categories where product_id = '{product_id}'")
+        cur.execute(f"delete from openfoodfacts_product where id = '{product_id}'")
+        Database.databaseConnection.commit()
+
+    def get_duplicate_product():
+        cur = Database.cursor()
+        cur.execute("select off_id, COUNT(off_id) from openfoodfacts_product GROUP BY off_id HAVING COUNT(off_id) > 1")
+        return cur.fetchall()
+
+    def products_from_off_id(off_id):
+        cur = Database.cursor()
+        cur.execute(f"select id, name from openfoodfacts_product WHERE off_id = '{off_id}'")
+        return cur.fetchall()

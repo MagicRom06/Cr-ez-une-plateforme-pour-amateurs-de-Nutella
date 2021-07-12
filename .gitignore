@@ -1,2 +1,3 @@
 staticfiles/
 .\cookies\\test
+geckodriver.log
