@@ -5,10 +5,13 @@ from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView
+import logging
 
 from .models import Product, Substitute
 
 # Create your views here.
+
+logger = logging.getLogger(__name__)
 
 
 class SearchResultsListView(ListView):
@@ -21,6 +24,9 @@ class SearchResultsListView(ListView):
 
     def get_queryset(self):
         search = self.request.GET.get('search')
+        logger.info('New search', exc_info=True, extra={
+            'search':search,
+        })
         return Product.objects.filter(
             Q(name__icontains=search)
         )
