@@ -20,7 +20,7 @@ before_script:
 script:
   - export SECRET_KEY='test'
   - export DB_PASSWORD='test'
-  - export DB_USER='test'
+  - export DB_USER='django'
   - export DB_NAME='test'
   - export DB_PORT=5432
   - export EMAIL_HOST=smtp.test.mc
