@@ -32,7 +32,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
     SITE_ID = 5
 else:
     DEBUG = True
-    SITE_ID = 2
+    SITE_ID = 3
 
 ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1', '54.38.181.39', 'pur-beurre.ovh', 'www.pur-beurre.ovh']
 
@@ -103,11 +103,11 @@ WSGI_APPLICATION = 'pur_beurre.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pur_beurre',
-        'USER': 'django',
+        'NAME': os.environ['DB_NAME'],
+        'USER': os.environ['DB_USER'],
         'PASSWORD': os.environ['DB_PASSWORD'],
         'HOST': 'localhost',
-        'PORT': 5432
+        'PORT': os.environ['DB_PORT']
     }
 }
 
@@ -173,13 +173,21 @@ AUTHENTIFICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthentificationBackend',
 )
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = os.environ['EMAIL_HOST']
+EMAIL_HOST_USER = os.environ['EMAIL_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASSWORD']
+EMAIL_PORT = os.environ['EMAIL_PORT']
 
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTIFICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.CustomUserCreationForm'
+DEFAULT_FROM_EMAIL = 'notification-pur-beurre@monaco.mc'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

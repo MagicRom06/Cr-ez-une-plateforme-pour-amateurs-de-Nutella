@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+
+{% block content %}
+<header class="masthead-account">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 auth-div p-5">
+				<h2 class="text-uppercase text-center font-weight-bold">{% trans "Verify Your E-mail Address" %}</h2>
+				<hr>
+				<p>{% blocktrans %}We have sent an e-mail to you for verification.<br>
+				Follow the link provided to finalize the signup process.<br>
+				Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+			</div>
+		</div>
+	</div>
+</header>
+{% include 'footer.html' %}
+{% endblock %}
