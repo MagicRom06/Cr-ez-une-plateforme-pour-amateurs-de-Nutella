@@ -20,6 +20,9 @@ before_script:
 script:
   - export SECRET_KEY='test'
   - export DB_PASSWORD='test'
+  - export DB_USER='test'
+  - export DB_NAME='test'
+  - export DB_PORT='5432'
   - python manage.py makemigrations
   - python manage.py migrate
   - python manage.py test
