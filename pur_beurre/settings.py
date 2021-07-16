@@ -29,12 +29,12 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
-    SITE_ID = 1
+    SITE_ID = 5
 else:
     DEBUG = True
     SITE_ID = 2
 
-ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1', '54.38.181.39', 'pur-beurre.ovh']
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1', '54.38.181.39', 'pur-beurre.ovh', 'www.pur-beurre.ovh']
 
 
 # Application definition
@@ -210,7 +210,7 @@ sentry_sdk.init(
 if DEBUG is not True:
     SECURE_BROWSER_FILTER = True
     X_FRAME_OPTIONS = 'DENY'
-    SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = False
     SECURE_HSTS_SECONDS = 3600
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
@@ -219,6 +219,8 @@ if DEBUG is not True:
     CSRF_COOKIE_SECURE = True
     USE_X_FORWARDED_HOST = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
 
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
