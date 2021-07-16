@@ -22,7 +22,11 @@ script:
   - export DB_PASSWORD='test'
   - export DB_USER='test'
   - export DB_NAME='test'
-  - export DB_PORT='5432'
+  - export DB_PORT=5432
+  - export EMAIL_HOST=smtp.test.mc
+  - export EMAIL_USER=test@test.mc
+  - export EMAIL_PASSWORD=test1235
+  - export EMAIL_PORT=587
   - python manage.py makemigrations
   - python manage.py migrate
   - python manage.py test
