@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -5,7 +7,6 @@ from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView
-import logging
 
 from .models import Product, Substitute
 
@@ -25,7 +26,7 @@ class SearchResultsListView(ListView):
     def get_queryset(self):
         search = self.request.GET.get('search')
         logger.info('New search', exc_info=True, extra={
-            'search':search,
+            'search': search,
         })
         return Product.objects.filter(
             Q(name__icontains=search)

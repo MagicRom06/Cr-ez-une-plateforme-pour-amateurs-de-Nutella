@@ -21,7 +21,6 @@ class Command(BaseCommand):
         self.delete_duplicate(substitutes)
         Database.disconnect()
 
-
     def get_substitutes(self):
         print("Saving substitutes...")
         substitute_list = list()
@@ -30,7 +29,6 @@ class Command(BaseCommand):
             substitute_list.append(substitute[1])
             substitute_list.append(substitute[2])
         return set(substitute_list)
-
 
     def load(self):
         print('Insertion des données...')

@@ -34,7 +34,14 @@ else:
     DEBUG = True
     SITE_ID = 3
 
-ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1', '54.38.181.39', 'pur-beurre.ovh', 'www.pur-beurre.ovh']
+ALLOWED_HOSTS = [
+    '.herokuapp.com',
+    'localhost',
+    '127.0.0.1',
+    '54.38.181.39',
+    'pur-beurre.ovh',
+    'www.pur-beurre.ovh'
+]
 
 
 # Application definition
@@ -179,15 +186,20 @@ EMAIL_HOST = os.environ['EMAIL_HOST']
 EMAIL_HOST_USER = os.environ['EMAIL_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASSWORD']
 EMAIL_PORT = os.environ['EMAIL_PORT']
-
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTIFICATION_METHOD = 'email'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.CustomUserCreationForm'
 DEFAULT_FROM_EMAIL = 'notification-pur-beurre@monaco.mc'
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.CustomUserCreationForm'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 3
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 180
+ACCOUNT_UNIQUE_EMAIL = True
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -202,7 +214,8 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 sentry_sdk.init(
-    dsn="https://1a87fd96ffea4b328bad4068cad0713a@o890818.ingest.sentry.io/5839774",
+    dsn=("https://1a87fd96ffea4b328bad4068cad0713a@o8"
+         "90818.ingest.sentry.io/5839774"),
     integrations=[DjangoIntegration()],
 
     # Set traces_sample_rate to 1.0 to capture 100%
@@ -223,12 +236,10 @@ if DEBUG is not True:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
     USE_X_FORWARDED_HOST = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-    ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
 
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)

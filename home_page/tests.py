@@ -1,9 +1,9 @@
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import TestCase
 from django.urls import reverse
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
 
 class HomePageViewTest(TestCase):
