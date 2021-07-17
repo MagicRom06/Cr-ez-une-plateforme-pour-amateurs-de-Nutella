@@ -2,3 +2,4 @@ staticfiles/
 .\cookies\\test
 geckodriver.log
 job.sh
+.\cookies\\test/

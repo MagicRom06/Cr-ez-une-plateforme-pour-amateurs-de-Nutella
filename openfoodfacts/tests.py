@@ -15,7 +15,6 @@ class OpenFoodFactsTest(TestCase):
     """
     def setUp(self):
         self.user = get_user_model().objects.create_user(
-            username='test_user',
             email='test@test.com',
             password='testpass123',
             first_name='test first_name',
@@ -86,7 +85,7 @@ class OpenFoodFactsTest(TestCase):
         """
         testing saving substitute while logged
         """
-        self.client.login(username='test_user', password='testpass123')
+        self.client.login(email='test@test.com', password='testpass123')
         response = self.client.get(
             '/openfoodfacts/save/?product=' +
             str(self.product.pk) + '&substitute=' +
@@ -101,7 +100,7 @@ class OpenFoodFactsTest(TestCase):
         testing saving substitute with wrong substitute
         """
         false_product = str(uuid.UUID('cf0ce163-3fde-444e-af7f-d181471bc543'))
-        self.client.login(username='test_user', password='testpass123')
+        self.client.login(email='test@test.com', password='testpass123')
         response = self.client.get(
             '/openfoodfacts/save/?product=' +
             false_product +

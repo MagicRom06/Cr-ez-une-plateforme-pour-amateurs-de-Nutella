@@ -9,18 +9,17 @@ class CustomUserTests(TestCase):
 
     def setUp(self):
         self.user = get_user_model().objects.create_user(
-            username='test_user',
-            email='test@test.com',
-            password='testpass123',
-            first_name='test first_name',
-            last_name='test last_name'
+            email="test@test.com",
+            password="test1234",
+            first_name="test_first_name",
+            last_name="test_last_name"
         )
 
     def test_account_page_view(self):
         """
         testing account page access
         """
-        self.client.login(username='test_user', password='testpass123')
+        self.client.login(email='test@test.com', password='test1234')
         response = self.client.get(reverse('account'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.user.first_name)
@@ -28,32 +27,24 @@ class CustomUserTests(TestCase):
         self.assertTemplateUsed(response, 'users/account.html')
 
     def test_create_user(self):
-        """
-        testing creating new user
-        """
         User = get_user_model()
         user = User.objects.create_user(
-            username='test',
             email='test@email.com',
-            password='test123'
+            password='test123',
+            first_name="test_first_name",
+            last_name="test_last_name"
         )
-        self.assertEqual(user.username, 'test')
         self.assertEqual(user.email, 'test@email.com')
         self.assertTrue(user.is_active)
         self.assertFalse(user.is_staff)
         self.assertFalse(user.is_superuser)
 
     def test_create_superuser(self):
-        """
-        testing creating new super user
-        """
         User = get_user_model()
         admin_user = User.objects.create_superuser(
-            username='admin',
             email='admin@test.com',
             password='test123'
         )
-        self.assertEqual(admin_user.username, 'admin')
         self.assertEqual(admin_user.email, 'admin@test.com')
         self.assertTrue(admin_user.is_active)
         self.assertTrue(admin_user.is_staff)
@@ -61,7 +52,6 @@ class CustomUserTests(TestCase):
 
 
 class SignupTests(TestCase):
-    username = 'newuser'
     email = 'newuser@email.com'
 
     def setUp(self):
@@ -69,23 +59,14 @@ class SignupTests(TestCase):
         self.response = self.client.get(url)
 
     def test_signup_template(self):
-        """
-        testing signup template access
-        """
         self.assertEqual(self.response.status_code, 200)
         self.assertTemplateUsed(self.response, 'account/signup.html')
         self.assertContains(self.response, 'Sign up')
 
     def test_signup_form(self):
-        """
-        testing signup form
-        """
         new_user = get_user_model().objects.create_user(
-            self.username,
             self.email
         )
         self.assertEqual(get_user_model().objects.all().count(), 1)
-        self.assertEqual(
-            get_user_model().objects.all()[0].username, new_user.username)
         self.assertEqual(
             get_user_model().objects.all()[0].email, new_user.email)
