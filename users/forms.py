@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm, forms
+from django.utils.translation import gettext_lazy as _
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -23,7 +24,18 @@ class CustomUserChangeForm(UserChangeForm):
     """
     Personalize user creation form
     """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        password = self.fields.get('password')
+        if password:
+            password.help_text = kwargs.pop(
+                'password_url', """Le mot de passe peut être changé
+                 <a href="/users/password/change/">ici</a>"""
+            )
 
     class Meta:
         model = get_user_model()
-        fields = ('email',)
+        fields = ('email', 'first_name', 'last_name',)
+        help_texts = {
+            'password': _('Some useful help text.'),
+        }
