@@ -8,6 +8,12 @@ services:
   - postgresql
 install:
   - pipenv install
+addons:
+  chrome: stable
+before_install:   
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+install:
+  - pipenv install
 before_script:
   - psql -c 'create database pur_beurre;'
   - psql -c 'create user django;'
