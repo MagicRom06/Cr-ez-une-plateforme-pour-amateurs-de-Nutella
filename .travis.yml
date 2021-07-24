@@ -6,10 +6,6 @@ env:
   - DJANGO_SETTINGS_MODULE="pur_beurre.settings"
 services:
   - postgresql
-addons:
-  chrome: stable
-before_install:   
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 install:
   - pipenv install
 before_script:
@@ -19,14 +15,6 @@ before_script:
   - psql -c 'GRANT all privileges ON DATABASE pur_beurre TO django;'
 script:
   - export SECRET_KEY='test'
-  - export DB_PASSWORD='test'
-  - export DB_USER='django'
-  - export DB_NAME='pur_beurre'
-  - export DB_PORT=5432
-  - export EMAIL_HOST=smtp.test.mc
-  - export EMAIL_USER=test@test.mc
-  - export EMAIL_PASSWORD=test1235
-  - export EMAIL_PORT=587
   - python manage.py makemigrations
   - python manage.py migrate
   - python manage.py test
