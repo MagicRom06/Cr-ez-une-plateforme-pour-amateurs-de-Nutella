@@ -20,11 +20,11 @@ $(document).ready(function() {
 				processData: false,
 				contentType: false,
 				data: formData,
-				error: function (xhr) {
-					console.error(xhr.statusText);
+				error: function (res) {
+					$('.result').append(res.msg);
 				},
 				success: function (res) {
-					$('.success').text(res.msg);
+					$('.result').append(res.msg);
 					$('#userEmail').val(' ');
 					$('#userName').val(' ');
 				}
