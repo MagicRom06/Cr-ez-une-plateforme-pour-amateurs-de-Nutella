@@ -25,7 +25,6 @@ class NewsletterPageViewTest(TestCase):
         response = self.client.get(reverse('newsletter'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Souscription à notre newsletter')
-        # self.assertTemplateUsed(response, 'home_page/newsletter.html')
 
     def test_newsletter_form_post(self):
         self.client.post(
