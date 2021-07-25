@@ -55,4 +55,4 @@ def newsletterPage(request):
             json.dumps(response),
             content_type='application/json',
         )
-    return render(request, 'home_page/newsLetter.html')
+    return render(request, 'home_page/newsletter.html')
