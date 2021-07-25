@@ -4197,3 +4197,7 @@ h1{
   text-decoration: none;
   color: rgb(95, 72, 138);
 }
+
+.message-notification {
+  visibility: hidden;
+}

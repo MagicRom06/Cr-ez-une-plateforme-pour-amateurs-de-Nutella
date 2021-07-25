@@ -6,6 +6,8 @@ env:
   - DJANGO_SETTINGS_MODULE="pur_beurre.settings"
 services:
   - postgresql
+install:
+  - pipenv install
 addons:
   chrome: stable
 before_install:   
