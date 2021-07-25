@@ -1,9 +1,12 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.core import mail
 from django.test import TestCase
 from django.urls import reverse
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
+
+from .models import SubscribedUsers
 
 
 class HomePageViewTest(TestCase):
@@ -15,6 +18,35 @@ class HomePageViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Du gras, oui, mais de qualité !")
         self.assertTemplateUsed(response, 'home_page/home.html')
+
+
+class NewsletterPageViewTest(TestCase):
+    def test_newsletter_page_status_code(self):
+        response = self.client.get(reverse('newsletter'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Souscription à notre newsletter')
+        self.assertTemplateUsed(response, 'home_page/newsLetter.html')
+
+    def test_newsletter_form_post(self):
+        self.client.post(
+            reverse(
+                'newsletter'),
+            {
+                "email": "test@test.com",
+                "name": "TEST"
+            }
+        )
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(
+            mail.outbox[0].subject,
+            'Souscription NewsLetter'
+        )
+        self.assertTrue(
+            SubscribedUsers.objects.all().count(), 1)
+        self.assertEqual(
+            SubscribedUsers.objects.all()[0].email, "test@test.com")
+        self.assertEqual(
+            SubscribedUsers.objects.all()[0].name, "TEST")
 
 
 class SearchFormTest(StaticLiveServerTestCase):

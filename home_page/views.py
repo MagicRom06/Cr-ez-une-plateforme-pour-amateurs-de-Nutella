@@ -1,14 +1,13 @@
-from django.views.generic import TemplateView
-from django.shortcuts import render
-from django.http import JsonResponse
-import re
-from .models import SubscribedUsers
-from django.core.mail import send_mail, EmailMessage
-from django.conf import settings
-from django.template.loader import render_to_string
 import json
+
+from django.conf import settings
+from django.core.mail import EmailMessage
 from django.http import HttpResponse
-from django.template import RequestContext
+from django.shortcuts import render
+from django.template.loader import render_to_string
+from django.views.generic import TemplateView
+
+from .models import SubscribedUsers
 
 # Create your views here.
 
@@ -34,7 +33,11 @@ def newsletterPage(request):
             message = render_to_string('email/newsletter_sub_email.html')
             email_from = settings.DEFAULT_FROM_EMAIL
             recipient_list = [email, ]
-            email_response = EmailMessage(subject, message, email_from, recipient_list)
+            email_response = EmailMessage(
+                subject,
+                message,
+                email_from,
+                recipient_list)
             email_response.content_subtype = "html"
             email_response.send()
             response = {

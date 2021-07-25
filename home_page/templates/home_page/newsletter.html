@@ -9,8 +9,8 @@
                 <form id="newsletterForm" enctype="multipart/form-data" method="POST" action="" style="text-align: center;">
                     {% csrf_token %}
                     <div class="form-group">
-                        <input type="email" class="form-control" id="userEmail" placeholder="Entrez votre adresse email" required>
-                        <input type="text" class="form-control mt-2" id="userName" placeholder="Entrez votre nom" required>
+                        <input type="email" class="form-control" id="userEmail" name="email" placeholder="Entrez votre adresse email" required>
+                        <input type="text" class="form-control mt-2" id="userName" name="name" placeholder="Entrez votre nom" required>
                     </div>
                     <div class="d-grid gap-2">
                         <input type="submit" value="Souscrire" id="submit" class="btn btn-secondary btn-lg">
