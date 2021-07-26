@@ -5,3 +5,4 @@ job.sh
 .\cookies\\test/
 newrelic.ini
 .coverage
+dump.rdb

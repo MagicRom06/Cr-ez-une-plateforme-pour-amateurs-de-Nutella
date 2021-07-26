@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.decorators.cache import cache_page
 
 from .views import (ProductDetailView, SearchResultsListView,
                     SubstituteDetailView, UserSubstitutesListView,
@@ -6,7 +7,7 @@ from .views import (ProductDetailView, SearchResultsListView,
 
 urlpatterns = [
     path(
-           'search/', SearchResultsListView.as_view(),
+           'search/', cache_page(60 * 15)(SearchResultsListView.as_view()),
            name='search_results'
     ),
     path(
