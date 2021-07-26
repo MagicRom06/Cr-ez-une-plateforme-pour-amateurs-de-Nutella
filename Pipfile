@@ -22,6 +22,8 @@ django-cors-headers = "*"
 raven = "*"
 sentry-sdk = "*"
 newrelic = "*"
+redis = "*"
+django-redis = "*"
 
 [requires]
 python_version = "3.8"
