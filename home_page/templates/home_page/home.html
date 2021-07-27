@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load cache %}
 
 {% block title %}Home{% endblock title %}
 
 {% block content %}
+{% cache 500 home %}
 <header class="masthead">
 	<div class="container h-100">
 		<div class="row h-100 align-items-center justify-content-center text-center">
@@ -115,5 +117,6 @@
 		</div>
 	</div>
 </section>
+{% endcache %}
 {% include 'footer.html' %}
 {% endblock content %}
