@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header class="masthead-account">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 auth-div p-5">
+                <h2 class="text-uppercase text-center font-weight-bold">Souscription à notre newsletter</h2>
+                <form id="newsletterForm" enctype="multipart/form-data" method="POST" action="" style="text-align: center;">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="userEmail" name="email" placeholder="Entrez votre adresse email" required>
+                        <input type="text" class="form-control mt-2" id="userName" name="name" placeholder="Entrez votre nom" required>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <input type="submit" value="Souscrire" id="submit" class="btn btn-secondary btn-lg">
+                    </div>
+                    <small style="font-weight: 600;" class="result"></small>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+{% include 'footer.html' %}
+{% endblock content %}
