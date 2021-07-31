@@ -4188,3 +4188,16 @@ h1{
   margin:0 auto;
   margin-top: 5px;
 }
+.heroku-icon {
+  color: rgb(95, 72, 138);
+  font-size: 40px;
+}
+
+.heroku-icon:hover {
+  text-decoration: none;
+  color: rgb(95, 72, 138);
+}
+
+.message-notification {
+  visibility: hidden;
+}
