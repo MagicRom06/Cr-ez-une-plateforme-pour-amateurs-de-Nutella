@@ -30,7 +30,13 @@ def newsletterPage(request):
             subscribedUsers.name = name
             subscribedUsers.save()
             subject = 'Souscription NewsLetter'
-            message = render_to_string('email/newsletter_sub_email.html')
+            message = render_to_string(
+                'email/newsletter_sub_email.html',
+                {
+                'name': name,
+                'email': email
+                }
+            )
             email_from = settings.DEFAULT_FROM_EMAIL
             recipient_list = [email, ]
             email_response = EmailMessage(
