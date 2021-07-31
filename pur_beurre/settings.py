@@ -235,8 +235,7 @@ sentry_sdk.init(
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True
 )
-
-if DEBUG is not True:
+if DEBUG is False:
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
     SECURE_BROWSER_FILTER = True
     X_FRAME_OPTIONS = 'DENY'
@@ -245,8 +244,8 @@ if DEBUG is not True:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
     USE_X_FORWARDED_HOST = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -254,5 +253,4 @@ if DEBUG is not True:
     DATABASES['default'].update(db_from_env)
 
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = ('whitenoise.storage.'
-                           'CompressedManifestStaticFilesStorage')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
