@@ -33,8 +33,8 @@ def newsletterPage(request):
             message = render_to_string(
                 'email/newsletter_sub_email.html',
                 {
-                'name': name,
-                'email': email
+                    'name': name,
+                    'email': email
                 }
             )
             email_from = settings.DEFAULT_FROM_EMAIL
