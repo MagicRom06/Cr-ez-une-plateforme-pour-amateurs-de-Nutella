@@ -6,3 +6,4 @@ job.sh
 newrelic.ini
 .coverage
 dump.rdb
+.env
