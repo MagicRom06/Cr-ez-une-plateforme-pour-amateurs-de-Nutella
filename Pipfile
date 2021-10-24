@@ -24,6 +24,7 @@ sentry-sdk = "*"
 newrelic = "*"
 redis = "*"
 django-redis = "*"
+django-environ = "*"
 
 [requires]
 python_version = "3.8"
